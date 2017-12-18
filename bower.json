@@ -1,0 +1,10 @@
+{
+  "name": "3D-Drill",
+  "version": "1.0.1",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "linkedlist.js": "~1.0.3",
+    "requirejs": "~2.1.18",
+    "threejs": "latest"
+  }
+}

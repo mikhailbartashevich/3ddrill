@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.toolbar {
+	float: right;
+}
+
+.scene {
+	float: left;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html class="no-js"> 
+	<head>
+
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+		<title>3D Drill</title>
+
+		<meta name="description" content=""/>
+		<meta name="viewport" content="width=device-width"/>
+
+		<link rel="stylesheet" href="styles/main.css"/> 
+
+	</head>
+	<body>
+
+	 	<div class="scene"></div>
+	 	<!-- <div class="toolbar">
+	 			
+	 			<div class="toolbar-button"> <input type="button" name="" value="Add planetko" id="add-cube"/> </div>
+
+
+	 	</div>
+	    -->
+	    <script type="x-shader/x-vertex" id="vertexShader">
+
+			varying vec3 vWorldPosition;
+
+			void main() {
+
+				vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
+				vWorldPosition = worldPosition.xyz;
+
+				gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+			}
+
+		</script>
+
+		<script type="x-shader/x-fragment" id="fragmentShader">
+
+			uniform vec3 topColor;
+			uniform vec3 bottomColor;
+			uniform float offset;
+			uniform float exponent;
+
+			varying vec3 vWorldPosition;
+
+			void main() {
+
+				float h = normalize( vWorldPosition + offset ).y;
+				gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max( h , 0.0), exponent ), 0.0 ) ), 1.0 );
+
+			}
+
+		</script>
+
+		<script data-main="js/main" src="bower_components/requirejs/require.js"></script>
+		
+	</body>
+</html>
